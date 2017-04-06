@@ -1,47 +1,44 @@
 /* Problem : Find triangular number with ,500 divisors */
-
+/* N = p1^(n1)*p2(n2)... ,where px = prime implicant x ,n power */
+/* d(n) = (n1 + 1)*(n2 + 1)* ... */
 #include <stdio.h>
 #include <math.h>
 #define TERMS 500
-int divisor_number(unsigned long num){
+int count_divisors(unsigned long num){
     unsigned long i ;
-    int div_count = 0 ;
-    for (i = 1; i <= num/2.0; i++) {
-        if (num % i == 0 ) {
-            div_count++;
-            if (((double) num) / i >= (num / 2.0)) {
-                div_count++;
-            }
+    int count = 0 ;
+    int prod = 1 ;
+    while(num % 2 == 0) {
+        count++;
+        num /= 2 ;
+    }
+    prod *= (count + 1);
+    for (i = 3; (i*i) <= num; i+=2) {
+        count = 0 ;
+        while(num % i == 0 ) {
+            count++;
+            num /= i ;
         }
+        prod *= (count + 1) ;
     }
-    return div_count;
-}
-int divisor_number_v2(unsigned long num ){
-    int count = 2 ;
-    unsigned long i ;
-    if(num % 2 == 0){
-        count+=2 ;
+    if (num != 1) {
+        prod *= 2 ;
     }
-    for(i = 3; i*i <= num ; i++){
-        if(num % i == 0){
-            count++ ;
-            if ((num / i) > sqrt(num)) {
-                count++;
-            }
-        }
-    }
-    return count ;
+    return prod ;
 }
 int main(void){
     unsigned long i ;
-    unsigned long sum = 1;
-    printf("%d \n",divisor_number_v2(28) );
+    unsigned long long prod = 1;
+    unsigned long sum = 1 ;
+    int count = 0 ;
+    printf("%d %d\n",count_divisors(28),count_divisors(21));
+
     for (i = 2;; i++) {
-        printf(".. " );
         sum += i ;
-        if (divisor_number_v2(sum) == TERMS) {
-            printf("Answer : %lu\n",i );
-            return 0 ;
+        if (count_divisors(sum) > TERMS) {
+            printf("Answer : %lu \n",sum );
+            break ;
         }
     }
+    return 0 ;
 }
