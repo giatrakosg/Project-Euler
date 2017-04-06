@@ -25,6 +25,6 @@ double sum_2_power(int n){
     return sum ;
 }
 int main(void){
-    printf("%f\n",pow(sum_1_power(N),2) - sum_2_power(N) );
+    printf("Answer : %.0f\n",pow(sum_1_power(N),2) - sum_2_power(N) );
 
 }

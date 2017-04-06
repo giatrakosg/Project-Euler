@@ -18,19 +18,15 @@ int check_if_prime(long num){
 
 int main(void){
     char flag = check_if_prime(PRIME) ;
-    printf("%d %f\n",flag ,sqrt(PRIME));
     long check = ((long) ceil(sqrt(PRIME)));
-    printf("%ld \n",check );
     for (; (check >= 3); check-=2) {
-        //printf("%ld \n",check );
-        if (PRIME % check == 0 ) {
+        if (PRIME % check == 0 ) {  /* check if check divides PRIME */
             flag = check_if_prime(check);
-
         }
         if (flag) {
             break ;
         }
     }
-    printf("check = %ld\n",check);
+    printf("Answer = %ld\n",check);
 
 }

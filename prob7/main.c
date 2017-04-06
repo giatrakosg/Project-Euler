@@ -22,7 +22,7 @@ int main(void){
             place++;
             //printf("%d : %ld \n",place ,i );
             if (place == BOUND) {
-                printf("Answer : %ld,place = %d\n ",i ,place);
+                printf("Answer : %ld\n ",i);
                 break ;
             }
         }

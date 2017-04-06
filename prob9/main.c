@@ -18,7 +18,7 @@ int main(void){
         if (!is_natural(a)) {   /*check if natural */
             continue;
         }
-        printf("Answer : %f \n",a*b*c );
+        printf("Answer : %.0f \n",a*b*c );
         break ;
     }
     return 0 ;

@@ -42,7 +42,7 @@ int main(void){
         sumn[i] %= 10 ;
     }
     printf("\n ------ \n");
-    printf("Answer :" );
+    printf("Answer : " );
     for (size_t i = 0; i < 10 - count_digits(sumn[0]) + 1; i++) { /*All extra digits are concentrated to the start */
         printf("%d",sumn[i] );
     }

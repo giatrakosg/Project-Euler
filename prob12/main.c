@@ -28,11 +28,7 @@ int count_divisors(unsigned long num){
 }
 int main(void){
     unsigned long i ;
-    unsigned long long prod = 1;
     unsigned long sum = 1 ;
-    int count = 0 ;
-    printf("%d %d\n",count_divisors(28),count_divisors(21));
-
     for (i = 2;; i++) {
         sum += i ;
         if (count_divisors(sum) > TERMS) {

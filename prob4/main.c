@@ -18,8 +18,7 @@ void find_3_dig_divisors(int y){
             k = y / i ;
             flag = is_3_digit(k);
             if (flag) {
-                printf("Answer %d \n",y );
-                printf("term 1 = %d ,term 2 = %d\n",i ,k  );
+                printf("Answer : %d \n",y );
                 exit(0);
             }
         }
@@ -37,5 +36,5 @@ int main(void){
             }
         }
     }
-
+    return 0 ;
 }

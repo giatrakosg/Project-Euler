@@ -13,7 +13,7 @@ int main(void){
             }
         }
         if (!flag) {
-            printf("%ld \n",num );
+            printf("Answer : %ld \n",num );
             break ;
         }
     }

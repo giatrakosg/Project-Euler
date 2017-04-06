@@ -13,7 +13,6 @@ int main(void){
             sum += f1 ;
         }
     }
-    printf("f0 = %ld  f1 = %ld \n",f0 ,f1 );
     printf("Answer : %lld \n",sum );
     return 0 ;
 }
