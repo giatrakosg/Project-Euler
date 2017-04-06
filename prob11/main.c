@@ -32,11 +32,13 @@ int main(void){
             grid[i][j] = 0;
         }
     }
+    FILE *fp = fopen("grid.txt","r");
     for (i = 3; i < 23; i++) {
         for (j = 3; j < 23; j++) {
-            scanf("%d \n",&grid[i][j] );
+            fscanf(fp,"%d \n",&grid[i][j] );
         }
     }
+    fclose(fp);
     for (i = 3; i < 23; i++) {
         for (j = 3; j < 23; j++) {
             printf("%02d ",grid[i][j] );
@@ -52,5 +54,5 @@ int main(void){
         }
     }
     printf("Answer : %d \n",max );
-
+    return 0 ;
 }
