@@ -11,18 +11,18 @@ int is_3_digit(int y ){
     }
     else return 0 ;
 }
-void find_3_dig_divisors(int y){
+int find_3_dig_divisors(int y){
     int i ,flag = 0 ,k ;
     for (i = 100; i < 999; i++) {
         if (y % i == 0 ) {
             k = y / i ;
             flag = is_3_digit(k);
             if (flag) {
-                printf("Answer : %d \n",y );
-                exit(0);
+                return 1 ;
             }
         }
     }
+    return 0 ;
 }
 
 int main(void){
@@ -32,7 +32,10 @@ int main(void){
         for (x2 = 9; x2 >= 0; x2--) {
             for (x1 = 9; x1 >= 0; x1--) {
                 y = create_palindrome(x1,x2,x3);
-                find_3_dig_divisors(y);
+                if(find_3_dig_divisors(y)){
+                    printf("Answer : %d\n", y);
+                    return 0 ;
+                }
             }
         }
     }
