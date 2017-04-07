@@ -2,6 +2,7 @@
 /* Aproach : We start from bottom-up and add to the level above the max of its children */
 #include <stdio.h>
 #include <stdlib.h>
+#define ROWS 15
 int max(int a,int b){
     if (a > b) {
         return a ;
@@ -10,16 +11,16 @@ int max(int a,int b){
 
 }
 int main(void){
-    int triang[15][15] ;
+    int triang[ROWS][ROWS] ;
     int i , j ;
     FILE *fp = fopen("triangle.txt","r");
-    for (i = 0; i < 15; i++) {
+    for (i = 0; i < ROWS; i++) {
         for (j = 0; j <= i; j++) {
             fscanf(fp,"%d",&triang[i][j]);
         }
     }
     fclose(fp);
-    for (i = 13; i >= 0; i--) {
+    for (i = ROWS - 2; i >= 0; i--) {
         for (j = 0; j <= i ; j++) {
             triang[i][j] += max(triang[i+1][j],triang[i+1][j+1]);
         }
