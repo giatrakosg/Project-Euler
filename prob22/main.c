@@ -5,8 +5,8 @@
 
 void swap(int *a,int *b){
     int i = 0 ;
-    while(a[i] || b[i] ){ /*Xor operator */
-	if(a[i] != b[i]){
+    while(a[i] || b[i] ){
+	if(a[i] != b[i]){ /*Xor Swaping only works when a , b different */
 		a[i] = a[i] ^ b[i] ;
 		b[i] = b[i] ^ a[i] ;
 		a[i] = a[i] ^ b[i] ;
@@ -16,7 +16,15 @@ void swap(int *a,int *b){
 
 }
 void sort(){}
-void calc_alp(){}
+int calc_alp(int *a){
+    int sum = 0 ;
+    int i = 0 ;
+    while(a[i]){
+	sum += a[i] - 'A' + 1 ;
+	i++;
+    }
+    return sum ;
+}
 int main(void){
     int c ;
     int COL = 20 ;
@@ -53,5 +61,6 @@ int main(void){
         printf("\n");
     }
     fclose(fp);
+    printf("Alphabetic Value of last name %d \n",calc_alp(names[name_count - 1]));
     return 0 ;
 }
