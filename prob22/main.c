@@ -15,7 +15,23 @@ void swap(int *a,int *b){
     }
 
 }
-void sort(){}
+void insert_sort(int **table,int size,int length){
+    int i , j , k , max ;
+    for(i = 0;i < length;i++){
+	for(j = 0;j < size;j++){
+	    max = table[i][j];
+		for(k = 0 ;k < size;k++){
+		    if(table[i][k] > max){
+			max = table[i][k];
+			swap(table[k],table[j]);
+		    }
+		}
+	}
+    }
+
+
+
+}
 int calc_alp(int *a){
     int sum = 0 ;
     int i = 0 ;
@@ -52,6 +68,7 @@ int main(void){
     }
     swap(names[i],names[i-1]);
     name_count = i + 1;
+    insert_sort(names,ROWS,COL);
     for (i = 0; i < name_count ; i++) {
         j = 0 ;
         while(names[i][j] != 0 ){
