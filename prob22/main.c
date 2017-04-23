@@ -4,33 +4,28 @@
 #include <stdlib.h>
 
 void swap(int *a,int *b){
-    int i = 0 ;
+    int i = 0 ,temp ;
     while(a[i] || b[i] ){
-	if(a[i] != b[i]){ /*Xor Swaping only works when a , b different */
-		a[i] = a[i] ^ b[i] ;
-		b[i] = b[i] ^ a[i] ;
-		a[i] = a[i] ^ b[i] ;
-	}
-	i++;
+        if(a[i] != b[i]){       /*Xor Swaping only works when a , b different */
+            temp = a[i] ;
+            a[i] = b[i] ;
+            b[i] = temp ;
+	    }
+	    i++;
     }
-
 }
-void insert_sort(int **table,int size,int length){
-    int i , j , k , max ;
-    for(i = 0;i < length;i++){
-	for(j = 0;j < size;j++){
-	    max = table[i][j];
-		for(k = 0 ;k < size;k++){
-		    if(table[i][k] > max){
-			max = table[i][k];
-			swap(table[k],table[j]);
-		    }
-		}
-	}
+void insert_sort(int **table,int size ,int start){
+    if (start >= 0 ) {
+        int i , j ;
+        for (i = 0; i < size - 1; i++) {
+            for (j = i + 1; j < size; j++) {
+                if (table[j][start] < table[i][start]) {
+                    swap(table[j],table[i]);
+                }
+            }
+        }
+        insert_sort(table,size,start - 1);
     }
-
-
-
 }
 int calc_alp(int *a){
     int sum = 0 ;
