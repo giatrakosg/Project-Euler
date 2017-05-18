@@ -1,5 +1,5 @@
 /* Problem : Find longest collatz chain of starting number < 1000000 */
-/* Approace Eratosthenes shieve inspired method */
+/* Approach Eratosthenes shieve inspired method */
 #include <stdio.h>
 #include <stdlib.h>
 #define BOUND 1000000
@@ -13,15 +13,18 @@ int main(void){
     long max = -1 ;
     long num = 0 ;
     long sum = 0 ;
+    /* Dynamic memory allocation for 2d array */
     int **numbers = (int **)malloc(1000 * sizeof(int *));
     for (i=0; i<1000; i++)
          numbers[i] = (int *)malloc(1000 * sizeof(int));
+
     for (i = 0; i < 1000; i++) {
         for ( j = 0; j < 1000; j++) {
             numbers[i][j] = sum ;
             sum++;
         }
     }
+
     for (i = 0; i < 1000; i++) {
         for (j = 0; j < 1000; j++) {
             num = numbers[i][j] ;
@@ -36,8 +39,8 @@ int main(void){
                     }
                 }
                 else{
-                    count++;
-                    num = 3*num + 1;
+                    count+=2;
+                    num = (3*num + 1)/2;
                     if (num < BOUND) {
                         numbers[num / 1000][num % 1000] = 1;
                     }
