@@ -6,7 +6,7 @@
 
 #include "main.h"
 
-#define MAX_CHARS 25
+#define MAX_CHARS 40
 
 void swap(unsigned int *a,unsigned int *b){
     unsigned int i = 0 ,temp ;
@@ -57,7 +57,7 @@ int is_larger(char *str1,char *str2) {
 }
 int main(void){
     int c ,offset = 0 ;
-    int COL = 25 ;
+    int COL = MAX_CHARS ;
     int ROWS = 5500 ;
     int i ,j = 0 ;
     unsigned long long sum = 0 ;
@@ -92,7 +92,7 @@ int main(void){
         offset++;
         i++;
     }
-    for (i = 0; i < ROWS ; i++) {
+    for (i = offset; i < ROWS ; i++) {
         sum = sum + ((i - offset + 1) * calc_alph(names[i]));
     }
 
