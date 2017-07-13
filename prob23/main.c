@@ -60,7 +60,7 @@ int is_abundant(int n){
     return 0 ;
 }
 int cmp_fun(const void *a,const void *b) {
-    return (*(int *)b - *(int *)a);
+    return (*(int *)a - *(int *)b);
 }
 
 int main(void){
@@ -89,13 +89,11 @@ int main(void){
             sum += i ;
         }
     }
-    printf("%lld\n",sum);
-    printf("%d\n",abundcount );
+    printf("Answer: %lld\n",sum);
 
     return 0 ;
 }
-/* the approach is to create a table with all abundant numbers
-/* then go through all numbers up to the limit and and iterate through
-/* the abundant number then binary search if the difference is on
-/* the table
-*/
+/* the approach is to create a table with all abundant numbers */
+/* then go through all numbers up to the limit and and iterate through */
+/* the abundant number then binary search if the difference is on */
+/* the table */
