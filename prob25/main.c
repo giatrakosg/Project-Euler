@@ -52,7 +52,6 @@ int main(void) {
         count++;
     }
 
-    print(number);
     printf("Answer : %d\n",count );
 
     return 0 ;
