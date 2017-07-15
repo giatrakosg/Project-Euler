@@ -22,6 +22,7 @@ int calc_alph(char *str){
 int main(void){
     int i , j ;
     char c ;
+
     char **names = (char **)malloc(sizeof(char *) * ROWS);
     for (i = 0; i < ROWS; i++) {
         names[i] = (char *)malloc(sizeof(char) * COL);
@@ -31,36 +32,37 @@ int main(void){
             names[i][j] = 0 ;
         }
     }
+
     FILE *fp = fopen("names.txt","r");
     i = 0 ;
     while(1){
-            while((c = getc(fp)) != '"' ){
-                names[i][j] = c ;
-                j++;
-            }
+        while((c = getc(fp)) != '"' ){
+            names[i][j] = c ;
+            j++;
+        }
 
-            if(getc(fp) == EOF){ /*Get comma or EOF */
-                break ;
-            }
-            getc(fp); /* Get next   */
-            i++;
-            j = 0 ;
+        if(getc(fp) == EOF){ /*Get comma or EOF */
+            break ;
+        }
+        getc(fp); /* Get next   */
+        i++;
+        j = 0 ;
     }
 
     int offset = 0 ;
     for(i = 0;i < ROWS ;i++)
         printf("%s\n",names[i] );
-    int len = sizeof(names) / sizeof(char *) ;
+
     qsort(names,ROWS,sizeof(char *),str_cmp);
     for(i = 0;i < ROWS ;i++){
         printf("%s\n",names[i] );
-        if(strlen(names[i]) == 0) offset++;
+        if((names[i][0]) == 0) offset++;
     }
-    long long sum ;
+    long long sum = 0 ;
     for(i = 0;i < ROWS ;i++){
-        sum += (calc_alph(names[i]) * (i - offset + 1));
+        sum += (calc_alph(names[i]) * (i - offset + 1 + 1));
     }
-    printf("%s alph=%d ",names[937+offset],calc_alph(names[937+offset]) );
+    printf("%s alph=%d \n",names[937+offset],calc_alph(names[937+offset])*(937+offset - offset + 1) );
     printf("%lld offset = %d\n",sum,offset );
-
+    fclose(fp);
 }
