@@ -12,8 +12,9 @@ void init(int *k) {
 
 void add(int *a,int *b) {
     for (int i = DIGITS - 1; i >= 1; i--) {
+        int tmp = a[i] ;
         a[i] = (a[i] + b[i]) % 10 ;
-        b[i-1] += ((a[i] + b[i]) / 10) ;
+        b[i-1] += ((tmp + b[i]) / 10) ;
     }
 }
 void assign(int *dst,int *src) {
@@ -33,12 +34,16 @@ int main(void) {
     int prev[DIGITS];
     int tmp1[DIGITS];
     int tmp2[DIGITS];
+
     init(number);
     init(prev);
     init(tmp1);
     init(tmp2);
+
     number[DIGITS - 1] = 1 ;
+
     int count = 1 ;
+
     while(number[1] == 0){
         assign(tmp1,number);
         assign(tmp2,prev);
@@ -46,6 +51,7 @@ int main(void) {
         assign(prev,tmp1);
         count++;
     }
+
     print(number);
     printf("Answer : %d\n",count );
 
