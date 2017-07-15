@@ -4,23 +4,32 @@
 
 
 #include <stdio.h>
+
+int prims[20] ;
+
 void prim_comps(int a){
     int p = 0 ;
-    int i = 2 ;
+
     while(!(a % 2)){
         p++;
         a /= 2 ;
     }
-    
-    for (int i = 3; i < count; i++) {
-        /* code */
+    if(prims[2 - 1] < p) prims[2 - 1] = p ;
+    for (int i = 3; i*i < a; i+=2) {
+        p = 0 ;
+        while((a % i) == 0 ){
+            p++;
+        }
+        if(prims[i - 1] < p) prims[i - 1] = p ;
     }
 
 }
 
 int main(void){
-
-
+    for (int i = 0; i < 20; i++) {
+        prims[i] = 0 ;
+    }
+    
 
     return 0 ;
 
