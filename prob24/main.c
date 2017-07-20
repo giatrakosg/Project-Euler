@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Problem : find the millionth permutaion  */
+/* Problem : find the millionth permutation  */
 /* of the digits 0 to 9                     */
 
 /* Approach algorithm L check picture */
