@@ -4,6 +4,11 @@
 void get_decimal(int *dec_part,int divd,int size){
     int divisor = 10;
     for (int i = 0; i < size; i++) {
+
+        if(divisor == 0){
+            break ;
+        }
+
         if(((divisor*10) < divd)) {
             dec_part[i] = divisor ;
             divisor *= 10 ;
@@ -23,6 +28,12 @@ void print_array(int *a,int length) {
     printf("\n");
 
 }
+
+void init(int *a,int length,int def) {
+    for (int i = 0; i < length; i++) {
+        a[i] = def ;
+    }
+}
 // if the divisor is the same in two spots then there must be a cycle
 // all nubmers have cycles
 // Sort the array and check if there are doubles if there are then the cycle is of
@@ -38,7 +49,9 @@ int find_cycles(int *a,int length) {
     int max = -1 ;
     int cyc = 1 ;
     for (int i = 0; i < length - 1; i++) {
-
+        if(a[i] < 0){
+            break ;
+        }
         if(a[i] == a[i + 1]){
             cyc++;
         }
@@ -58,6 +71,7 @@ int main(void) {
     printf("Give divisor \n" );
     scanf("%d\n",&divisor );
     int dec_part[400] ;
+    init(dec_part,400,-1);
     get_decimal(dec_part,divisor,400);
     print_array(dec_part,400);
     printf("%d\n",find_cycles(dec_part,400) );
