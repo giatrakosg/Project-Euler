@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define LENGTH 400
+#define LENGTH 50000
+
+/* problem : Find the d for which 1/d decimal part has
+the longest reccuring cycle of digits */
+
+/* Approach : Construct a table for each number with the divisors
+for the classic long division ,then qsort it and count the number
+of same digits ,then divide the buffer with that number */
 
 void get_decimal(int *dec_part,int divd,int size){
     int divisor = 10;
     for (int i = 0; i < size; i++) {
-
-        if(divisor == 0){
-            break ;
-        }
-
         if(((divisor*10) < divd)) {
             dec_part[i] = divisor ;
             divisor *= 10 ;
@@ -35,6 +37,7 @@ void init(int *a,int length,int def) {
         a[i] = def ;
     }
 }
+
 // if the divisor is the same in two spots then there must be a cycle
 // all nubmers have cycles
 // Sort the array and check if there are doubles if there are then the cycle is of
@@ -43,39 +46,40 @@ int cmpfun(const void *a,const void *b) {
     return (*(int *)a - *(int *)b);
 
 }
+
 int find_cycles(int *a,int length) {
     qsort(a,length,sizeof(int),cmpfun);
-    print_array(a,length);
     // seach for biggest chain of equal numbers
-    int max = -1 ;
-    int cyc = 1 ;
-    for (int i = 0; i < length - 1; i++) {
-        if(a[i] < 0){
-            break ;
-        }
-        if(a[i] == a[i + 1]){
+    int max = -1;
+    for (int i = 0; i < LENGTH; i++) {
+        int cyc = 1 ;
+        while(a[i] == a[i + 1]) {
             cyc++;
+            i++;
         }
-        else {
-            if(cyc > max){
-                max  = cyc ;
-            }
-            cyc = 1 ;
+        if(cyc > max){
+            max = cyc ;
         }
     }
-    return (length / cyc)+1 ;
+    return( LENGTH / max) ;
 
+    return 0 ;
 }
 
 int main(void) {
-    int divisor ;
-    printf("Give divisor \n" );
-    scanf("%d\n",&divisor );
     int dec_part[LENGTH] ;
-    init(dec_part,LENGTH,-1);
-    get_decimal(dec_part,divisor,LENGTH);
-    print_array(dec_part,LENGTH);
-    printf("%d\n",find_cycles(dec_part,LENGTH) );
+    int k ;
+    int max = -1 ;
+    int tmp ;
+    for (int i = 1; i < 1000; i++) {
+        init(dec_part,LENGTH,-1);
+        get_decimal(dec_part,i,LENGTH);
+        if ((tmp = find_cycles(dec_part,LENGTH)) > max) {
+            max = tmp ;
+            k = i ;
+        }
+    }
+    printf("Answe : %d\n",k );
 
     return 0 ;
 }
