@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define LENGTH 400
 
 void get_decimal(int *dec_part,int divd,int size){
     int divisor = 10;
@@ -70,11 +71,11 @@ int main(void) {
     int divisor ;
     printf("Give divisor \n" );
     scanf("%d\n",&divisor );
-    int dec_part[400] ;
-    init(dec_part,400,-1);
-    get_decimal(dec_part,divisor,400);
-    print_array(dec_part,400);
-    printf("%d\n",find_cycles(dec_part,400) );
+    int dec_part[LENGTH] ;
+    init(dec_part,LENGTH,-1);
+    get_decimal(dec_part,divisor,LENGTH);
+    print_array(dec_part,LENGTH);
+    printf("%d\n",find_cycles(dec_part,LENGTH) );
 
     return 0 ;
 }
