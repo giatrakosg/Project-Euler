@@ -15,6 +15,7 @@
 #define ESTM 250 // see https://en.wikipedia.org/wiki/Prime_number_theorem#Table_of_.CF.80.28x.29.2C_x_.2F_log_x.2C_and_li.28x.29
 #define BND 1000
 int check_if_prime(int num){
+    if(num <= 0) { return 0 ; }
     int i ;
     if (num % 2 == 0) {
         return 0;
@@ -61,8 +62,7 @@ int main(void) {
             j++;
         }
     }
-    print_array(primes_less1000,ESTM);
-
+    
     j = 0 ;
     int a , b ;
     int max = -1 ;
@@ -75,9 +75,10 @@ int main(void) {
             if(c > max){
                 maxa = a ;
                 maxb = b ;
+                max = c ;
             }
         }
     }
-    printf("a= %d b= %d a*b = %d\n",maxa,maxb,maxb*maxa );
+    printf("Answer = %d \n",maxb*maxa);
     return 0 ;
 }
