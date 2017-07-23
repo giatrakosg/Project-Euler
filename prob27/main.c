@@ -2,7 +2,11 @@
 /* n^2 + an + b ,so that it produces the maximus number of consecutive primes */
 
 /* Aproach : So that it is prime for n = 0 it must be positive so */
-/* b > 0, also it must me prime for n = 0 so b is prime .*/
+/* b > 0, also it must me prime for n = 0 so b is prime .The search space for*/
+/* b is reduced to approx.200 */
+
+/* For n = 1 the formula is a + b + 1 and it must be positive so */
+/* a+b+1>0=>a+1>-b=>a>-b-1  thus a = -b is the first integer to start seach from */
 
 
 #include <stdio.h>
@@ -36,16 +40,44 @@ void init(int *a,int length,int def) {
     }
 }
 
+int get_chain(int co_a,int co_b) {
+    /* returns the number of consecutive primes */
+    int n = 0 ;
+    int count = 0 ;
+    while (check_if_prime(n*n + co_a*n + co_b)) {
+        count++;
+        n++;
+    }
+    return count ;
+}
+
 int main(void) {
-    int b_primes_below1000[ESTM] ;
-    init(b_primes_below1000,ESTM,0);
+    int primes_less1000[ESTM] ;
+    init(primes_less1000,ESTM,0);
     int j = 0 ;
     for (int i = 2 ; i <= BND; i++) {
         if(check_if_prime(i)){
-            b_primes_below1000[j] = i ;
+            primes_less1000[j] = i ;
             j++;
         }
     }
-    print_array(b_primes_below1000,ESTM);
+    print_array(primes_less1000,ESTM);
+
+    j = 0 ;
+    int a , b ;
+    int max = -1 ;
+    int maxa = -1000 ;
+    int maxb = -1000 ;
+    for (j = 0; primes_less1000[j] != 0; j++) {
+        b = primes_less1000[j] ;
+        for (a = -b; a < 1000; a++) {
+            int c = get_chain(a,b);
+            if(c > max){
+                maxa = a ;
+                maxb = b ;
+            }
+        }
+    }
+    printf("a= %d b= %d a*b = %d\n",maxa,maxb,maxb*maxa );
     return 0 ;
 }
