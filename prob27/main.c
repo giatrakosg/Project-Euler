@@ -22,8 +22,23 @@ int check_if_prime(int num){
     }
     return 1 ;
 }
+void print_array(int *a,int length) {
+    for (int i = 0; i < length; i++) {
+        printf("%d ",a[i] );
+    }
+    printf("\n");
+
+}
+
+void init(int *a,int length,int def) {
+    for (int i = 0; i < length; i++) {
+        a[i] = def ;
+    }
+}
+
 int main(void) {
     int b_primes_below1000[ESTM] ;
+    init(b_primes_below1000,ESTM,0);
     int j = 0 ;
     for (int i = 2 ; i <= BND; i++) {
         if(check_if_prime(i)){
@@ -31,6 +46,6 @@ int main(void) {
             j++;
         }
     }
-
+    print_array(b_primes_below1000,ESTM);
     return 0 ;
 }
