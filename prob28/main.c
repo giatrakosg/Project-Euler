@@ -10,8 +10,27 @@ its side */
 /* UL(n) = DL(n) + L(n) - 1 ,element in Upper Left corner of sq.n */
 /* UR(n) = UL(n) + L(n) - 1 ,element in Upper Right corner of sq.n */
 
-
-
+int L(int n) {
+    return (1+2*n) ;
+}
+int S(int n) {
+    return (4*L(n)-3) ;
+}
+int F(int n) {
+    return (16*n - 3) ;
+}
+int DR(int n) {
+    return (F(n) + (L(n) - 1)/2) ;
+}
+int DL(int n) {
+    return (DR(n) + L(n) - 1);
+}
+int UL(int n) {
+    return (DL(n) + L(n) - 1);
+}
+int UR(int n) {
+    return (UL(n) + L(n) - 1);
+}
 int main(void) {
 
 
