@@ -10,6 +10,8 @@ its side */
 /* UL(n) = DL(n) + L(n) - 1 ,element in Upper Left corner of sq.n */
 /* UR(n) = UL(n) + L(n) - 1 ,element in Upper Right corner of sq.n */
 
+#include <stdio.h>
+
 int L(int n) {
     return (1+2*n) ;
 }
@@ -32,8 +34,11 @@ int UR(int n) {
     return (UL(n) + L(n) - 1);
 }
 int main(void) {
-
-
+    long sum = 0 ;
+    for (int i = 0; i <= 1001; i++) {
+        sum += DR(i) + DL(i) + UL(i) + UR(i) ;
+    }
+    printf("Answer : %ld\n",sum );
 
     return 0 ;
 }
