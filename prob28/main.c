@@ -16,18 +16,15 @@ int L(int n) {
     return (1+2*n) ;
 }
 int S(int n) {
-    if(!n) return 1 ;
-    return (4*L(n)-4) ;
+    if(n == 0) return 1 ;
+    return 8*n ; // 4*L(n) - 4
 }
 int F(int n) {
-    int sum = 0 ;
-    for (int i = 0; i < n; i++) {
-        sum += S(i);
-    }
-    return sum + 1;
+    if(n == 0) return 1 ;
+    return F(n-1) + S(n-1);
 }
 int DR(int n) {
-    return (F(n) + (L(n) - 1)/2) ;
+    return (F(n) + L(n) - 2) ; // the first element is 1 after the highest on the left side
 }
 int DL(int n) {
     return (DR(n) + L(n) - 1);
@@ -39,7 +36,7 @@ int UR(int n) {
     return (UL(n) + L(n) - 1);
 }
 int main(void) {
-    long sum = 2 ; // count 2 times the 1 of the 0th level
+    long sum = 1 ; // count 1 times the 1 of the 0th level
     for (int i = 1; i <= 500; i++) { // start after 1 in center
         sum += DR(i) + DL(i) + UL(i) + UR(i) ;
     }
